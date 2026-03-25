@@ -13,13 +13,13 @@ import com.sprint.mission.discodeit.service.jcf.JCFUserService;
 import java.util.UUID;
 
 // 메인 메소드가 선언된 JavaApplication 클래스를 선언하고, 도메인 별 서비스 구현체를 테스트해보세요.
-//[ ] 등록
-//[ ] 조회(단건, 다건)
-//[ ] 수정
-//[ ] 수정된 데이터 조회
-//[ ] 삭제
-//[ ] 조회를 통해 삭제되었는지 확인
-
+//[O] 등록
+//[O] 조회(단건, 다건)
+//[O] 수정
+//[O] 수정된 데이터 조회
+//[O] 삭제
+//[O] 조회를 통해 삭제되었는지 확인
+//[O] 메시지 검증 되었는지 (id랑 채널 유무에 따라 메시지 검증)
 public class JavaApplication {
     public static void main(String[] args) {
 
@@ -31,7 +31,7 @@ public class JavaApplication {
 
         // 1. 등록
         User user1 = new User("test1", "test1@email.com", "1234", "홍길동");
-        User user2 = new User("test2", "test2@email.com", "5678", "고길동");
+        User user2 = new User("test2", "test2@email.com", "1234", "고길동");
         userService.save(user1);
         userService.save(user2);
 
@@ -47,7 +47,7 @@ public class JavaApplication {
 
 
         // 4. 수정
-        user1.update("updateTest1", "update1@email.com", "9999", "홍홍홍홍");
+        user1.update("updateTest1", "update1@email.com", "1111", "홍홍홍홍");
         userService.update(user1);
 
         // 5. 수정된 데이터 조회

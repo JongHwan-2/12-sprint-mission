@@ -22,13 +22,11 @@ public class JCFMessageService implements MessageService {
 
     @Override
     public Message save(Message message) {
-        UserService userId = this.userService;
-        ChannelService channelId = this.channelService;
-        if (userId.findById(message.getUserId()) != null && channelId.findById(message.getChannelId()) != null) {
-            data.add(message);
-            return message;
-        }
-        return null;
+       if(this.userService.findById(message.getUserId()) == null &&  this.channelService.findById(message.getChannelId()) == null) {
+           data.add(message);
+           return message;
+       }
+       return null;
     }
 
     @Override
