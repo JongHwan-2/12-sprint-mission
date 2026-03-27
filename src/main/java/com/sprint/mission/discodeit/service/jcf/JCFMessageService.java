@@ -1,6 +1,7 @@
 package com.sprint.mission.discodeit.service.jcf;
 
 import com.sprint.mission.discodeit.entity.Message;
+import com.sprint.mission.discodeit.entity.User;
 import com.sprint.mission.discodeit.service.ChannelService;
 import com.sprint.mission.discodeit.service.MessageService;
 import com.sprint.mission.discodeit.service.UserService;
@@ -14,15 +15,22 @@ public class JCFMessageService implements MessageService {
     private UserService userService;
     private ChannelService channelService;
 
-    public JCFMessageService(UserService userService, ChannelService channelService) {
+    private JCFMessageService(UserService userService, ChannelService channelService) {
         this.data = new ArrayList<>();
         this.userService = userService;
         this.channelService = channelService;
     }
+    private static JCFMessageService instance;
+    public static JCFMessageService getInstance(UserService userService, ChannelService channelService) {
+        if(instance == null){
+            instance = new JCFMessageService(userService, channelService);
+        }
+        return instance;
+    }
 
     @Override
     public Message save(Message message) {
-       if(this.userService.findById(message.getUserId()) == null &&  this.channelService.findById(message.getChannelId()) == null) {
+       if(this.userService.findById(message.getUserId()) != null &&  this.channelService.findById(message.getChannelId()) != null) {
            data.add(message);
            return message;
        }
@@ -31,13 +39,14 @@ public class JCFMessageService implements MessageService {
 
     @Override
     public Message findById(UUID id) {
-        for (Message message : data) {
-            if (message.getId().equals(id)) {
-                return message;
-            }
-        }
-
-        return null;
+//        for (Message message : data) {
+//            if (message.getId().equals(id)) {
+//                return message;
+//            }
+//        }
+//
+//        return null;
+        return data.stream().filter(message -> message.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override

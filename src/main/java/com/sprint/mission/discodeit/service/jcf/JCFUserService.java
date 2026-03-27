@@ -15,9 +15,16 @@ public class JCFUserService implements UserService {
 
     private final List<User> data;
 
-    public JCFUserService() {
+    private JCFUserService() {
         data = new ArrayList<>();
     }
+
+    private static JCFUserService instance =  new JCFUserService();
+
+    public static JCFUserService getInstance() {
+        return instance;
+    }
+    
 
     @Override
     public User save(User user) {
@@ -27,11 +34,11 @@ public class JCFUserService implements UserService {
 
     @Override
     public User findById(UUID id) {
-        for(User user : data){
-            if(user.getId().equals(id)) return user;
-        }
-//        data.stream().filter(idata -> idata.getId().equals(id));
-        return null;
+//        for(User user : data){
+//            if(user.getId().equals(id)) return user;
+//        }
+//        return null;
+        return data.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override

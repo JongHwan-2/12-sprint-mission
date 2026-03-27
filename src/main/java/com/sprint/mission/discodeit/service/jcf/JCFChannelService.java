@@ -6,12 +6,19 @@ import com.sprint.mission.discodeit.service.ChannelService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 public class JCFChannelService implements ChannelService {
     private final List<Channel> data;
 
-    public JCFChannelService(){
+    private JCFChannelService(){
         data = new ArrayList<>();
+    }
+
+    private static JCFChannelService instance = new JCFChannelService();
+
+    public static JCFChannelService getInstance(){
+        return instance;
     }
 
     @Override
@@ -22,13 +29,16 @@ public class JCFChannelService implements ChannelService {
 
     @Override
     public Channel findById(UUID id) {
-        for (Channel channel : data) {
-            if (channel.getId().equals(id)) {
-                return channel;
-            }
-        }
+//        for (Channel channel : data) {
+//            if (channel.getId().equals(id)) {
+//                return channel;
+//            }
+//        }
+//        return null;
 
-        return null;
+        // Stream 사용하기.
+        return data.stream().filter(channel -> channel.getId().equals(id)).findFirst().orElse(null);
+
     }
 
     @Override

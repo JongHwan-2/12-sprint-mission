@@ -20,12 +20,14 @@ import java.util.UUID;
 //[O] 삭제
 //[O] 조회를 통해 삭제되었는지 확인
 //[O] 메시지 검증 되었는지 (id랑 채널 유무에 따라 메시지 검증)
+//[O] 싱글톤 구현 (getInstance())
+//[O] stream api 구현
 public class JavaApplication {
     public static void main(String[] args) {
 
-        UserService userService = new JCFUserService();
-        ChannelService channelService = new JCFChannelService();
-        MessageService messageService = new JCFMessageService(userService, channelService);
+        UserService userService =  JCFUserService.getInstance();
+        ChannelService channelService = JCFChannelService.getInstance();
+        MessageService messageService = JCFMessageService.getInstance(userService, channelService);
 
         System.out.println("============= USER 테스트 시작 =============");
 
