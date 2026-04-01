@@ -1,5 +1,6 @@
 package com.sprint.mission.discodeit.entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 // 도메인 모델 정의
 // [O] 디스코드 서비스를 활용해보면서 각 도메인 모델에 필요한 정보를 도출하고, Java Class로 구현하세요.
@@ -19,7 +20,7 @@ import java.util.UUID;
 // [O] 각 필드를 반환하는 Getter 함수를 정의하세요.
 // [O] 필드를 수정하는 update 함수를 정의하세요.
 
-public class User {
+public class User implements Serializable {
     private UUID id;
     private String username;
     private String email;
