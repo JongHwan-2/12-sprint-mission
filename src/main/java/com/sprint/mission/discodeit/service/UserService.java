@@ -1,6 +1,8 @@
 package com.sprint.mission.discodeit.service;
 
-import com.sprint.mission.discodeit.entity.User;
+import com.sprint.mission.discodeit.dto.UserCreateRequest;
+import com.sprint.mission.discodeit.dto.UserDto;
+import com.sprint.mission.discodeit.dto.UserUpdateRequest;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,9 +12,13 @@ import java.util.UUID;
 // [O] 인터페이스 네이밍 규칙: [도메인 모델 이름]Service
 
 public interface UserService {
-    User save(User user);
-    User findById(UUID id);
-    List<User> findAll();
-    User update(User user);
-    User delete(UUID id);
+    UserDto create(UserCreateRequest request);
+
+    UserDto findById(UUID id);
+
+    List<UserDto> findAll();
+
+    UserDto update(UserUpdateRequest request);
+
+    UserDto delete(UUID id);
 }
