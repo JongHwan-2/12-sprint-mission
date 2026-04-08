@@ -177,7 +177,7 @@ public class JavaApplication {
         return channelService.save(channel);
     }
 
-    static void messageCreateTest(MessageService messageService, Channel channel, User author) {
+    static void messageCreateTest(MessageService messageService, User author, Channel channel) {
         Message message = new Message("안녕하세요.", channel.getId(), author.getId());
         System.out.println("메시지 생성: " + messageService.save(message).getId());
     }

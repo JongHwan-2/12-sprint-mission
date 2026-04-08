@@ -6,6 +6,7 @@ import com.sprint.mission.discodeit.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 // 다음의 조건을 만족하는 서비스 인터페이스의 구현체를 작성하세요.
 //[O] 클래스 패키지명: com.sprint.mission.discodeit.service.jcf
 //[O] 클래스 네이밍 규칙: JCF[인터페이스 이름]
@@ -19,12 +20,12 @@ public class JCFUserService implements UserService {
         data = new ArrayList<>();
     }
 
-    private static JCFUserService instance =  new JCFUserService();
+    private static JCFUserService instance = new JCFUserService();
 
     public static JCFUserService getInstance() {
         return instance;
     }
-    
+
 
     @Override
     public User save(User user) {
@@ -49,8 +50,8 @@ public class JCFUserService implements UserService {
     @Override
     public User update(User user) {
         User findUser = findById(user.getId());
-        if(findUser != null){
-            user.update(
+        if (findUser != null) {
+            findUser.update(
                     user.getUsername(),
                     user.getEmail(),
                     user.getPassword(),
@@ -64,7 +65,7 @@ public class JCFUserService implements UserService {
     @Override
     public User delete(UUID id) {
         User findUser = findById(id);
-        if(findUser != null){
+        if (findUser != null) {
             data.remove(findUser);
             return findUser;
         }
