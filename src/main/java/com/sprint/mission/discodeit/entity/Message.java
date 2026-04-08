@@ -1,6 +1,8 @@
 package com.sprint.mission.discodeit.entity;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -9,6 +11,7 @@ import java.util.UUID;
 
 @Getter
 @ToString
+@NoArgsConstructor
 public class Message implements Serializable {
     private UUID id;
     private String content;
@@ -17,9 +20,7 @@ public class Message implements Serializable {
     private Instant createdAt;
     private Instant updatedAt;
 
-    public UUID getId() {
-        return id;
-    }
+    @Builder
     public Message(String content, UUID userId, UUID channelId) {
         this.id = UUID.randomUUID();
         this.content = content;
@@ -29,9 +30,8 @@ public class Message implements Serializable {
         this.updatedAt = Instant.now();
     }
 
-    public void update(String content){
+    public void update(String content) {
         this.content = content;
         this.updatedAt = Instant.now();
     }
-
 }
